@@ -36,7 +36,8 @@ img {
   cursor: pointer;
 }
 
-.prev, .next {
+.prev,
+.next {
   background-color: transparent;
   padding: 8px 10px;
   color: #fff;
@@ -59,8 +60,29 @@ img {
   .justify-content-around.align-items-center.mt-3.gallery-header.mb-2 {
     flex-direction: column;
   }
+
   #sliders {
     height: 300px;
     width: 90%;
   }
+}
+
+.perfect-img {
+  width: 100%;
+  position: relative;
+}
+
+.preview-btn {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  background-color: rgba(107, 107, 106, 0.404);
+  color: white;
+}
+
+.perfect-img:hover .preview-btn {
+  display: block;
+  background-color: #0d6efd;
+  color: #fff;
 }

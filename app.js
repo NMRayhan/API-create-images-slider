@@ -8,6 +8,8 @@ const sliderContainer = document.getElementById('sliders');
 let sliders = [];
 
 
+
+
 // If this key doesn't work
 // Find the name in the url and go to their website
 // to create your own api key
@@ -30,18 +32,55 @@ const showImages = (images) => {
   images.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.classList.add('perfect-img')
+    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
+    <button type="button" class="btn preview-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="preview('${image.previewURL}')">preview</button>
+    `;
     gallery.appendChild(div)
   })
-
 }
 
-const getImages = (query) => {
-  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
-    .then(response => response.json())
-    .then(data => showImages(data.hits))
-    .catch(err => console.log(err))
+/* <button class="btn preview-btn" onclick="preview('${image.previewURL}')">preview</button> */
+
+const getImages = async (query) => {
+  const url = `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    showImages(data.hits)
+
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+
+//preview images
+const preview = (prevURL) => {
+  const previewContainer = document.getElementById('preview-container')
+  const prevImg = document.getElementById('previewImg');
+  prevImg.innerHTML = `
+  <img src="${prevURL}" alt="" class="w-100" >
+  `
+
+
+
+
+
+  /* 
+  const previewDiv = document.createElement('div')
+  previewDiv.innerHTML = ' '
+  for (let i = 0; i < 1; i++) {
+    previewDiv.innerHTML = `
+      <img src="${prevURL}" alt="">
+      `
+  }
+  previewContainer.appendChild(previewDiv)
+  */
+}
+
+
+
 
 let slideIndex = 0;
 const selectItem = (event, img) => {
