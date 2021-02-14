@@ -40,7 +40,6 @@ const showImages = (images) => {
   })
 }
 
-/* <button class="btn preview-btn" onclick="preview('${image.previewURL}')">preview</button> */
 
 const getImages = async (query) => {
   const url = `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
@@ -62,21 +61,6 @@ const preview = (prevURL) => {
   prevImg.innerHTML = `
   <img src="${prevURL}" alt="" class="w-100" >
   `
-
-
-
-
-
-  /* 
-  const previewDiv = document.createElement('div')
-  previewDiv.innerHTML = ' '
-  for (let i = 0; i < 1; i++) {
-    previewDiv.innerHTML = `
-      <img src="${prevURL}" alt="">
-      `
-  }
-  previewContainer.appendChild(previewDiv)
-  */
 }
 
 

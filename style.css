@@ -72,8 +72,8 @@ img {
   position: relative;
 }
 
-.preview-btn {
-  display: none;
+.perfect-img .preview-btn {
+  display: block;
   position: absolute;
   top: 5px;
   left: 20px;
@@ -81,8 +81,9 @@ img {
   color: white;
 }
 
-.perfect-img:hover .preview-btn {
+.perfect-img .preview-btn:hover {
   display: block;
   background-color: #0d6efd;
   color: #fff;
+  cursor: pointer;
 }
